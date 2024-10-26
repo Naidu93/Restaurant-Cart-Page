@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Label from './Label'
 import Quantity from './Quantity'
+import Total from './Total'
 
 
 const cartItems = [
@@ -42,15 +43,23 @@ const Cart = () => {
             let newQuantity = item.quantity + value;
             newQuantity = newQuantity > 0 ? newQuantity : 0;
 
+
             return item.id === id ? { ...item, quantity: newQuantity } : item
         })
 
         setCart(newItems);
         console.log(newItems, value, id);
+
     }
 
     return (
-        <div>
+        <div style={{
+            width: "100vw",
+            display: "flex",
+            alignItems: "center",
+            flexDirection: "column",
+
+        }}>
             {
                 cart.map((item) => {
                     return (
@@ -68,7 +77,7 @@ const Cart = () => {
                 })
 
             }
-            <h3>Total Price : {totalAmount}</h3>
+            <Total total={totalAmount} />
         </div >
     )
 }
